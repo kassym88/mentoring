@@ -1,0 +1,8 @@
+.footer {
+  left: 0;
+  width: 100%;
+  heigth: 25px;
+  bottom: 0;
+  background-color: cadetblue;
+  position: absolute;
+}

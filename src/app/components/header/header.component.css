@@ -1,0 +1,27 @@
+.header {
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: cadetblue;
+  position: absolute;
+}
+
+.header-right {
+  top: 0px;
+  left: 50%;
+  right: 0;
+  width: 49.9%;
+  position: absolute;
+  text-align: right;
+  /*border: 1px solid red;*/
+}
+
+.header-left {
+  top: 0px;
+  left: 0;
+  right: 0;
+  width: 49.9%;
+  position: absolute;
+  /*border: 1px solid blue;*/
+}
