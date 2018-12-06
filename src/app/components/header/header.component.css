@@ -10,7 +10,6 @@
 .header-right {
   top: 0px;
   left: 50%;
-  right: 0;
   width: 49.9%;
   position: absolute;
   text-align: right;
@@ -20,7 +19,6 @@
 .header-left {
   top: 0px;
   left: 0;
-  right: 0;
   width: 49.9%;
   position: absolute;
   /*border: 1px solid blue;*/
