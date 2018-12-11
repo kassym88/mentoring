@@ -1,22 +1,27 @@
 .courselist {
-  margin-top: 10px;
   padding: 10px;
   background-color: beige;
-}
-
-.courselist-search {
-  margin-bottom: 10px;
+  width: 90%;
+  position: absolute;
 }
 
 .left {
-  top: 0;
+  top: 10px;
   left: 0;
+  padding-left: 10px;
   width: 49.9%;
+  position: absolute;
 }
 
 .right {
-  top: 0;
-  left: 50%;
-  width: 49.9%;
+  top: 10px;
+  right: 0;
+  width: 49%;
+  padding-right: 10px;
   text-align: right;
+  position: absolute;
+}
+
+.courselist-container {
+  margin-top: 30px;
 }

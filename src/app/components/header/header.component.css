@@ -8,7 +8,7 @@
 }
 
 .header-right {
-  top: 0px;
+  top: 0;
   left: 50%;
   width: 49.9%;
   position: absolute;
@@ -17,7 +17,7 @@
 }
 
 .header-left {
-  top: 0px;
+  top: 0;
   left: 0;
   width: 49.9%;
   position: absolute;
