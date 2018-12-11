@@ -3,3 +3,26 @@
   background-color: antiquewhite;
   border: 0.5px solid grey;
 }
+
+.course-item-container {
+  padding: 5px;
+  width: 100%;
+  position: absolute;
+  border: 1px solid orange;
+}
+
+.course-item-left {
+  top: 0;
+  left: 0;
+  width: 74%;
+  position: absolute;
+  border: 1px solid blue;
+}
+
+.course-item-left {
+  top: 0;
+  right: 0;
+  width: 25%;
+  position: absolute;
+  border: 1px solid red;
+}
