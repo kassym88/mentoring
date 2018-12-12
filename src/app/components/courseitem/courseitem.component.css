@@ -1,28 +1,32 @@
 .course-item {
-  min-height: 50px;
+  padding: 10px;
   background-color: antiquewhite;
   border: 0.5px solid grey;
 }
 
 .course-item-container {
-  padding: 5px;
-  width: 100%;
-  position: absolute;
-  border: 1px solid orange;
+  display: flex;
+  flex-direction: row;
+}
+
+.course-item-container span {
+  margin-left: 10px;
 }
 
 .course-item-left {
-  top: 0;
-  left: 0;
-  width: 74%;
-  position: absolute;
-  border: 1px solid blue;
+  flex: 9;
 }
 
-.course-item-left {
-  top: 0;
-  right: 0;
-  width: 25%;
-  position: absolute;
-  border: 1px solid red;
+.course-item-right {
+  flex: 1;
+  text-align: right;
+}
+
+.course-item-right button {
+  width: 50px;
+  margin: 5px;
+}
+
+.course-item-header {
+  font-weight: bold;
 }

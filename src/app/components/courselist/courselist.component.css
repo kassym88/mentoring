@@ -1,27 +1,29 @@
 .courselist {
+  padding: 10px;
   background-color: beige;
-  width: 100%;
-  position: absolute;
-}
-
-.courselist-left {
-  top: 10px;
-  left: 0;
-  padding-left: 10px;
-  width: 49%;
-  position: absolute;
-}
-
-.courselist-right {
-  top: 10px;
-  right: 0;
-  width: 49%;
-  padding-right: 10px;
-  text-align: right;
-  position: absolute;
 }
 
 .courselist-container {
-  padding: 10px;
-  margin-top: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.courselist-left {
+  flex: 1;
+}
+
+.courselist-left input {
+  width: 250px;
+  margin-right: 10px;
+}
+
+.courselist-right {
+  flex: 1;
+  text-align: right;
+}
+
+.load-more {
+  /*background-color: antiquewhite;*/
+  width: 100%;
 }
