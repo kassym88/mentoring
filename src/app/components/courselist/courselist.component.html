@@ -7,6 +7,12 @@
       <button>Add new course</button>
     </div>
   </div>
-  <app-courseitem></app-courseitem>
-  <button class="load-more">Load More</button>
+  <app-courseitem *ngFor="let course of courseList"
+                  [course]="course"
+                  [courseEdit]="courseEdit"
+                  [courseDelete]="courseDelete"
+                  (courseEditEvent)="courseEditEvent(course)"
+                  (courseDeleteEvent)="courseDeleteEvent(course)"
+  ></app-courseitem>
+  <button class="load-more" (click)="getCourseList()">Load More</button>
 </div>

@@ -13,8 +13,8 @@
       <span>{{course.description}}</span>
     </div>
     <div class="course-item-right">
-      <div><button>Edit</button></div>
-      <div><button>Delete</button></div>
+      <div><button (click)="edit(course)">Edit</button></div>
+      <div><button (click)="delete(course)">Delete</button></div>
     </div>
   </div>
 </div>
