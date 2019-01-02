@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseitemComponent } from './courseitem.component';
+import { HighlightDirective } from 'app/directives/highlight.directive';
 
 describe('CourseitemComponent', () => {
   let component: CourseitemComponent;
@@ -8,7 +9,7 @@ describe('CourseitemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseitemComponent ]
+      declarations: [ CourseitemComponent, HighlightDirective ]
     })
     .compileComponents();
   }));
@@ -17,7 +18,7 @@ describe('CourseitemComponent', () => {
     fixture = TestBed.createComponent(CourseitemComponent);
     component = fixture.componentInstance;
     component.course = {
-      creationDate: '01.09.2018',
+      creationDate: new Date('01/09/2018'),
       description: 'Firts course',
       duration: 1,
       id: 1,

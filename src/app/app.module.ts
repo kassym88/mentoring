@@ -9,6 +9,7 @@ import { CourseitemComponent } from './components/courseitem/courseitem.componen
 import { CourselistComponent } from './components/courselist/courselist.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LogoComponent } from './components/logo/logo.component';
     CourseitemComponent,
     CourselistComponent,
     FooterComponent,
-    LogoComponent
+    LogoComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
