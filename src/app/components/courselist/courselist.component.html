@@ -14,5 +14,8 @@
                   (courseEditEvent)="courseEditEvent(course)"
                   (courseDeleteEvent)="courseDeleteEvent(course)"
   ></app-courseitem>
-  <button class="load-more" (click)="getCourseList()">Load More</button>
+  <button class="load-more" (click)="getCourseList()">
+    <span *ngIf="courseList.length">Load More</span>
+    <span *ngIf="!courseList.length">No Data, feel free to add new course</span>
+  </button>
 </div>

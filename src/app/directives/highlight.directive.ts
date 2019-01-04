@@ -1,15 +1,17 @@
-import {Directive, ElementRef, Input, Renderer2} from '@angular/core';
+import {Directive, ElementRef, Renderer2, Input, OnInit} from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
 })
-export class HighlightDirective {
+export class HighlightDirective implements OnInit {
   @Input('appHighlight') dt: Date;
   @Input() title: string;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
-    console.log('this.dt', this.dt);
-    console.log('this.title', this.title);
+
+  }
+
+  ngOnInit() {
     this.highLightBorder(this.dt);
   }
 
@@ -20,9 +22,6 @@ export class HighlightDirective {
       : (dt && dt > curDt)
         ? '10px solid blue'
         : '';
-    console.log('dt', dt);
-    console.log('curdt', curDt);
-    console.log('brd', brd);
     this.renderer.setStyle(this.el.nativeElement, 'border-right', brd);
   }
 

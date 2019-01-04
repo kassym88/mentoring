@@ -8,7 +8,7 @@ import {CourseService} from 'app/services/course.service';
   styleUrls: ['./courselist.component.css']
 })
 export class CourselistComponent implements OnInit {
-  courseList: Course[];
+  courseList: Course[] = [];
   constructor(private cs: CourseService) { }
 
   ngOnInit() {
@@ -18,7 +18,6 @@ export class CourselistComponent implements OnInit {
   }
 
   getCourseList(): void {
-    console.log('getCourseList');
     this.cs.getCourseList().subscribe((courseList: Course[]) => {
       this.courseList = courseList;
     });

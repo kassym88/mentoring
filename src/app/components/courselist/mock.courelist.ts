@@ -6,34 +6,39 @@ export const Courses: Course[] = [
     description: 'First course',
     duration: 1,
     id: 1,
-    title: 'Course 1'
+    title: 'Course 1',
+    topRated: true
   },
   {
-    creationDate: new Date('02/09/2018'),
+    creationDate: new Date('2018-09-02'),
     description: 'Second course',
     duration: 2,
     id: 2,
-    title: 'Course 2'
+    title: 'Course 2',
+    topRated: false
   },
   {
-    creationDate: new Date('03/09/2018'),
+    creationDate: new Date('2018-09-03'),
     description: 'Third course',
     duration: 3,
     id: 3,
-    title: 'Course 3'
+    title: 'Course 3',
+    topRated: true
   },
   {
-    creationDate: new Date('03/09/2019'),
+    creationDate: new Date('2019-09-03'),
     description: 'Third course',
-    duration: 3,
-    id: 3,
-    title: 'Course 3'
+    duration: 4,
+    id: 4,
+    title: 'Course 3',
+    topRated: false
   },
   {
-    creationDate: new Date('03/01/2019'),
+    creationDate: new Date('2019-01-03'),
     description: 'Third course',
-    duration: 3,
-    id: 3,
-    title: 'Course 3'
+    duration: 5,
+    id: 5,
+    title: 'Course 3',
+    topRated: true
   }
 ];
