@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
@@ -7,13 +8,16 @@ import { CourseitemComponent } from './components/courseitem/courseitem.componen
 import { CourselistComponent } from './components/courselist/courselist.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
-
+import { HighlightDirective } from './directives/highlight.directive';
+import { DurationPipe } from './pipes/duration.pipe';
+import { CourseFilterPipe } from './pipes/course-filter.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       declarations: [
         AppComponent,
@@ -22,8 +26,14 @@ describe('AppComponent', () => {
         CourseitemComponent,
         CourselistComponent,
         FooterComponent,
-        LogoComponent
+        LogoComponent,
+        HighlightDirective,
+        DurationPipe,
+        CourseFilterPipe
       ],
+      providers: [
+        CourseFilterPipe
+      ]
     }).compileComponents();
   }));
 
@@ -31,12 +41,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'mentoring'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('mentoring');
   });
 
   it('should render title in a h1 tag', () => {

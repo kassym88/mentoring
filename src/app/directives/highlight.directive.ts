@@ -5,7 +5,6 @@ import {Directive, ElementRef, Renderer2, Input, OnInit} from '@angular/core';
 })
 export class HighlightDirective implements OnInit {
   @Input('appHighlight') dt: Date;
-  @Input() title: string;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
 

@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseitemComponent } from './courseitem.component';
 import { HighlightDirective } from 'app/directives/highlight.directive';
+import { DurationPipe } from 'app/pipes/duration.pipe';
+import {CourseFilterPipe} from '../../pipes/course-filter.pipe';
 
 describe('CourseitemComponent', () => {
   let component: CourseitemComponent;
@@ -9,7 +11,12 @@ describe('CourseitemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseitemComponent, HighlightDirective ]
+      declarations: [
+        CourseitemComponent,
+        HighlightDirective,
+        DurationPipe,
+        CourseFilterPipe
+      ]
     })
     .compileComponents();
   }));
@@ -22,7 +29,8 @@ describe('CourseitemComponent', () => {
       description: 'Firts course',
       duration: 1,
       id: 1,
-      title: 'Course 1'
+      title: 'Course 1',
+      topRated: true
     };
     fixture.detectChanges();
   });
