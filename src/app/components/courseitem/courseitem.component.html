@@ -11,8 +11,14 @@
           </span>
         </div>
         <div class="course-item-right">
-          <span>{{course.duration+' hours'}}</span>
-          <span>{{course.creationDate | date: 'dd/MM/yyyy'}}</span>
+          <div class="course-item-container">
+            <div class="course-item-left" style="text-align: left">
+              <span>{{course.duration | duration}}</span>
+            </div>
+            <div class="course-item-right" style="text-align: right; font-weight: normal">
+              <span>{{course.creationDate | date: 'dd/MM/yyyy'}}</span>
+            </div>
+          </div>
         </div>
       </div>
       <span>{{course.description}}</span>

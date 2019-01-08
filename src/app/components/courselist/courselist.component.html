@@ -1,7 +1,8 @@
 <div class="courselist">
   <div class="courselist-container">
     <div class="courselist-left">
-      <input placeholder="Type to search"/><button>Search</button>
+      <input [(ngModel)]="filter" placeholder="Type to search"/>
+      <button (click)="searchCourseList(filter)">Search</button>
     </div>
     <div class="courselist-right">
       <button>Add new course</button>
