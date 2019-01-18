@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from 'app/classes/Course';
-import {CourseService} from 'app/services/course.service';
-import {CourseFilterPipe} from '../../pipes/course-filter.pipe';
+import { Course } from 'app/classes/Course';
+import { CourseService } from 'app/services/course.service';
+import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
 
 @Component({
   selector: 'app-courselist',

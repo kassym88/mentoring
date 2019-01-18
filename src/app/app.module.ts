@@ -14,6 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
 // Directives
 import { HighlightDirective } from './directives/highlight.directive';
+// Services
+import { CourseService } from './services/course.service';
 // Pipes
 import { DurationPipe } from './pipes/duration.pipe';
 import { CourseFilterPipe } from './pipes/course-filter.pipe';
@@ -38,7 +40,8 @@ import { CourseFilterPipe } from './pipes/course-filter.pipe';
     AuthModule
   ],
   providers: [
-    CourseFilterPipe
+    CourseFilterPipe,
+    CourseService
   ],
   bootstrap: [
     AppComponent]

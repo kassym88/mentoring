@@ -2,10 +2,10 @@
   <div class="header-left">
     <app-logo></app-logo>
   </div>
-  <div class="header-right">
+  <div class="header-right" *ngIf="isAuthenticated">
     <div>
-      <span class="header-user">IUser Login</span>
-      <button class="header-logout btn-group">Log Out</button>
+      <span class="header-user">{{user.email}}</span>
+      <button class="header-logout btn-group" (click)="logout()">Log Out</button>
     </div>
   </div>
 </div>

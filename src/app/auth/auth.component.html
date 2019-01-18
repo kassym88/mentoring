@@ -1,8 +1,8 @@
 <div style="position: absolute; height: 100%; width: 100%; display: flex; align-items: center">
   <div class="container">
-    <div class="row">
-      <app-login class="col"></app-login>
-      <app-signup class="col"></app-signup>
+    <div class="row justify-content-center">
+      <app-login class="col-3" (signInEvent)="signInEvent($event)"></app-login>
+      <!--<app-signup class="col"></app-signup>-->
     </div>
   </div>
 </div>
