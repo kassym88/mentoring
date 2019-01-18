@@ -1,6 +1,7 @@
 .courselist {
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   background-color: beige;
+  margin-bottom: 25px;
 }
 
 .courselist-container {
@@ -20,7 +21,7 @@
 
 .courselist-right {
   flex: 1;
-  text-align: right;
+  text-align: right !important;
 }
 
 .load-more {

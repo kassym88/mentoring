@@ -1,0 +1,15 @@
+<div class="container">
+  <p>
+    <label class="mb-0">Email address</label>
+    <input type="email" class="form-control" [(ngModel)]="login" placeholder="{{loginPlaceholder}}" required="" autofocus="">
+  </p>
+  <p>
+    <label class="mb-0">Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password" placeholder="{{passwordPlaceholder}}" required="">
+  </p>
+  <p>
+    <label class="mb-0">Confirm Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password2" placeholder="{{passwordPlaceholder2}}" required="">
+  </p>
+  <button class="btn btn-lg btn-warning btn-block" type="submit">Sign up</button>
+</div>
