@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {User} from 'app/classes/User';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,16 +7,13 @@ import {User} from 'app/classes/User';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  @Input() user: User;
-  @Output() toggleLoggedFlag: EventEmitter<boolean> = new EventEmitter();
-  constructor() { }
+  constructor(private as: AuthService) { }
 
   ngOnInit() {
   }
 
   signInEvent($event: {email: string, password: string}): void {
-    this.user.email = $event.email;
-    this.toggleLoggedFlag.emit(true);
+    this.as.logIn($event.email, $event.password);
   }
 
 }

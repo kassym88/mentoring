@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { User } from './classes/User';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,11 @@ export class AppComponent implements OnInit  {
   isAuthenticated = false;
   user: User;
 
-  toggleLoggedFlag($event): void {
-    this.isAuthenticated = $event;
+  constructor(private as: AuthService) {
+    this.isAuthenticated = this.as.isAuthenticated();
   }
 
   ngOnInit(): void {
-    this.user = new User();
+    this.user = this.as.getUser();
   }
 }

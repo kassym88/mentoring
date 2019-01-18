@@ -1,13 +1,7 @@
-<app-header [isAuthenticated]="isAuthenticated"
-            [user]="user"
-            (toggleLoggedFlag)="toggleLoggedFlag($event)"
-></app-header>
-<div class="my-container" *ngIf="isAuthenticated">
+<app-header></app-header>
+<div class="my-container" *ngIf="user.email">
   <app-breadcrumbs></app-breadcrumbs>
   <app-courselist></app-courselist>
 </div>
-<app-auth *ngIf="!isAuthenticated"
-          [user]="user"
-          (toggleLoggedFlag)="toggleLoggedFlag($event)"
-></app-auth>
+<app-auth *ngIf="!user.email"></app-auth>
 <app-footer></app-footer>

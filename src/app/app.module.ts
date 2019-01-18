@@ -16,6 +16,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { HighlightDirective } from './directives/highlight.directive';
 // Services
 import { CourseService } from './services/course.service';
+import {AuthService} from './services/auth.service';
 // Pipes
 import { DurationPipe } from './pipes/duration.pipe';
 import { CourseFilterPipe } from './pipes/course-filter.pipe';
@@ -41,7 +42,8 @@ import { CourseFilterPipe } from './pipes/course-filter.pipe';
   ],
   providers: [
     CourseFilterPipe,
-    CourseService
+    CourseService,
+    AuthService
   ],
   bootstrap: [
     AppComponent]

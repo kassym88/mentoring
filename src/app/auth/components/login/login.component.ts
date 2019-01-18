@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(login: string, password: string): void {
-    console.log(login, password);
     this.signInEvent.emit({email: login, password: password});
   }
 

@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from 'app/services/auth.service';
 import {User} from '../../classes/User';
 
 @Component({
@@ -7,15 +8,14 @@ import {User} from '../../classes/User';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() isAuthenticated: boolean;
-  @Input() user: User;
-  @Output() toggleLoggedFlag: EventEmitter<boolean> = new EventEmitter();
-  constructor() { }
+  user: User;
+  constructor(private as: AuthService) { }
 
   ngOnInit() {
+    this.user = this.as.getUser();
   }
 
   logout(): void {
-    this.toggleLoggedFlag.emit(false);
+    this.as.logOut();
   }
 }
