@@ -35,7 +35,11 @@ export class CourselistComponent implements OnInit {
   }
 
   courseDeleteEvent(course: Course): void {
-    console.log('course', course);
+    if (confirm(`Do you really want to delete this course "${course.title}"?`)) {
+      this.cs.removeItem(course).subscribe((courseList: Course[]) => {
+        this.courseList = courseList;
+      });
+    }
   }
   courseEdit = (course: Course): void => {
     console.log('course', course);

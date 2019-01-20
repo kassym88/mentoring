@@ -34,9 +34,9 @@ export class CourseService {
   }
 
   removeItem(removeCourse: Course): Observable<Course[]> {
-    const x: number = this.courses.findIndex((course: Course) => course.id === removeCourse.id) || -1;
+    const x: number = this.courses.findIndex((course: Course) => course.id === removeCourse.id);
     if (x > -1) {
-      this.courses = this.courses.splice(x, 1);
+      this.courses.splice(x, 1);
     }
     return of(this.courses);
   }
