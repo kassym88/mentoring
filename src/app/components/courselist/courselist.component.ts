@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Course } from 'app/classes/Course';
 import { CourseService } from 'app/services/course.service';
 import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
@@ -9,6 +9,9 @@ import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
   styleUrls: ['./courselist.component.css']
 })
 export class CourselistComponent implements OnInit {
+  @Output() addCourse: EventEmitter<null> = new EventEmitter();
+  @Output() editCourse: EventEmitter<null> = new EventEmitter();
+  filter: string;
   courseListOriginal: Course[] = [];
   courseList: Course[] = [];
   constructor(private cs: CourseService, private cf: CourseFilterPipe) { }
@@ -32,6 +35,7 @@ export class CourselistComponent implements OnInit {
 
   courseEditEvent(course: Course): void {
     console.log('course', course);
+    this.editCourse.emit();
   }
 
   courseDeleteEvent(course: Course): void {

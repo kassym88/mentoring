@@ -9,6 +9,7 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit  {
   title = 'mentoring';
+  add_edit: boolean;
   isAuthenticated = false;
   user: User;
 
@@ -18,5 +19,13 @@ export class AppComponent implements OnInit  {
 
   ngOnInit(): void {
     this.user = this.as.getUser();
+  }
+
+  addCourse(): void {
+    this.add_edit = true;
+  }
+
+  editCourse(): void {
+    this.add_edit = true;
   }
 }

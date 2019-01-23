@@ -10,6 +10,8 @@ export class DurationPipe implements PipeTransform {
     const m: number = Math.round(value % 60);
     if (h === 0) {
       return `${m}min`;
+    } else if (m === 0) {
+      return `${h}h`;
     } else {
       return `${h}h ${m}min`;
     }

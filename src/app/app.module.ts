@@ -20,6 +20,8 @@ import {AuthService} from './services/auth.service';
 // Pipes
 import { DurationPipe } from './pipes/duration.pipe';
 import { CourseFilterPipe } from './pipes/course-filter.pipe';
+import { ModalComponent } from './components/modal/modal.component';
+import { AddeditcourseitemComponent } from './components/addeditcourseitem/addeditcourseitem.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CourseFilterPipe } from './pipes/course-filter.pipe';
     LogoComponent,
     HighlightDirective,
     DurationPipe,
-    CourseFilterPipe
+    CourseFilterPipe,
+    ModalComponent,
+    AddeditcourseitemComponent
   ],
   imports: [
     BrowserModule,
