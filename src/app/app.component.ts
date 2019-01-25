@@ -21,11 +21,8 @@ export class AppComponent implements OnInit  {
     this.user = this.as.getUser();
   }
 
-  addCourse(): void {
+  addEditCourse($event): void {
     this.add_edit = true;
-  }
-
-  editCourse(): void {
-    this.add_edit = true;
+    console.log('$event', $event);
   }
 }

@@ -9,8 +9,8 @@ import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
   styleUrls: ['./courselist.component.css']
 })
 export class CourselistComponent implements OnInit {
-  @Output() addCourse: EventEmitter<null> = new EventEmitter();
-  @Output() editCourse: EventEmitter<null> = new EventEmitter();
+  @Output() addEditCourse: EventEmitter<Course | null> = new EventEmitter();
+
   filter: string;
   courseListOriginal: Course[] = [];
   courseList: Course[] = [];
@@ -34,8 +34,14 @@ export class CourselistComponent implements OnInit {
   }
 
   courseEditEvent(course: Course): void {
+    this.addEditCourse.emit(course);
+  }
+
+  courseEdit = (course: Course): void => {
     console.log('course', course);
-    this.editCourse.emit();
+  }
+  courseDelete = (course: Course): void => {
+    console.log('course', course);
   }
 
   courseDeleteEvent(course: Course): void {
@@ -45,10 +51,8 @@ export class CourselistComponent implements OnInit {
       });
     }
   }
-  courseEdit = (course: Course): void => {
-    console.log('course', course);
-  }
-  courseDelete = (course: Course): void => {
-    console.log('course', course);
+
+  courseNew(): void {
+    this.addEditCourse.emit();
   }
 }

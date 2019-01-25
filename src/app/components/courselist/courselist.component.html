@@ -5,7 +5,7 @@
       <button class="btn btn-sm btn-primary" (click)="searchCourseList(filter)">Search</button>
     </div>
     <div class="courselist-right">
-      <button class="btn btn-sm btn-success">Add new course</button>
+      <button class="btn btn-sm btn-success" (click)="courseNew()">Add new course</button>
     </div>
   </div>
   <app-courseitem *ngFor="let course of courseList"
