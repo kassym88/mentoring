@@ -1,8 +1,14 @@
 <app-header></app-header>
 <div class="my-container" *ngIf="user.email">
   <app-breadcrumbs></app-breadcrumbs>
-  <app-courselist *ngIf="!add_edit" (addEditCourse)="addEditCourse($event)"></app-courselist>
-  <app-addeditcourseitem *ngIf="add_edit"></app-addeditcourseitem>
+  <app-courselist *ngIf="!addEdit"
+                  (addEditCourse)="addEditCourse($event)"
+  ></app-courselist>
+  <app-addeditcourseitem *ngIf="addEdit"
+                         [course]="editCourse"
+                         (addEditCourseSave)="addEditCourseSave($event)"
+                         (addEditCourseCancel)="addEditCourseCancel()"
+  ></app-addeditcourseitem>
 </div>
 <app-auth *ngIf="!user.email"></app-auth>
 <app-footer></app-footer>

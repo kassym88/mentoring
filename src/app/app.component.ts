@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { User } from './classes/User';
 import {AuthService} from './services/auth.service';
+import {Course} from './classes/Course';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit  {
   title = 'mentoring';
-  add_edit: boolean;
+  addEdit: boolean;
+  editCourse: Course;
   isAuthenticated = false;
   user: User;
 
@@ -22,7 +24,20 @@ export class AppComponent implements OnInit  {
   }
 
   addEditCourse($event): void {
-    this.add_edit = true;
-    console.log('$event', $event);
+    this.addEdit = true;
+    this.editCourse = $event;
+  }
+
+  addEditCourseSave($event): void {
+    if ($event.id) {
+      // edit course
+    } else {
+      // new course
+    }
+  }
+
+  addEditCourseCancel(): void {
+    this.addEdit = false;
+    this.editCourse = null;
   }
 }
