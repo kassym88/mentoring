@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Course } from 'app/classes/Course';
 import { CourseService } from 'app/services/course.service';
 import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courselist',
@@ -14,7 +15,10 @@ export class CourselistComponent implements OnInit {
   filter: string;
   courseListOriginal: Course[] = [];
   courseList: Course[] = [];
-  constructor(private cs: CourseService, private cf: CourseFilterPipe) { }
+  constructor(private cs: CourseService,
+              private cf: CourseFilterPipe,
+              private router: Router
+  ) { }
 
   ngOnInit() {
     this.cs.getCourseList().subscribe((courseList: Course[]) => {
@@ -53,6 +57,7 @@ export class CourselistComponent implements OnInit {
   }
 
   courseNew(): void {
-    this.addEditCourse.emit();
+    this.router.navigateByUrl('/course/new');
+    // this.addEditCourse.emit();
   }
 }

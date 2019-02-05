@@ -21,6 +21,13 @@ export class CourseService {
     return of(this.courses);
   }
 
+  createCourse2(newCourse: Course): Promise<null> {
+    return new Promise((resolve, reject) => {
+      this.courses.push(newCourse);
+      resolve();
+    });
+  }
+
   getItemById(id: number): Course {
     return this.courses.find((course: Course) => course.id === id);
   }
@@ -31,6 +38,18 @@ export class CourseService {
       Object.keys(curCourse).forEach((key: string) => curCourse[key] = updatedCourse[key]);
     }
     return of(this.courses);
+  }
+
+  updateItem2(updatedCourse: Course): Promise<null> {
+    return new Promise((resolve, reject) => {
+      const curCourse: Course = this.courses.find((course: Course) => course.id === updatedCourse.id);
+      if (curCourse) {
+        Object.keys(curCourse).forEach((key: string) => curCourse[key] = updatedCourse[key]);
+        resolve();
+      } else {
+        reject();
+      }
+    });
   }
 
   removeItem(removeCourse: Course): Observable<Course[]> {

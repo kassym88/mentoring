@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { User } from './classes/User';
 import {AuthService} from './services/auth.service';
 import {Course} from './classes/Course';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,17 @@ export class AppComponent implements OnInit  {
   isAuthenticated = false;
   user: User;
 
-  constructor(private as: AuthService) {
+  constructor(private as: AuthService,
+              private router: Router
+  ) {
     this.isAuthenticated = this.as.isAuthenticated();
   }
 
   ngOnInit(): void {
     this.user = this.as.getUser();
+    if (!this.user.email) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   addEditCourse($event): void {
