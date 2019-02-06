@@ -37,17 +37,26 @@ export class AddeditcourseitemComponent implements OnInit {
     if (this.id !== 'new') {
       this.cs.updateItem2(this.course).then(() => {
         this.router.navigateByUrl('');
+      }, (er: string) => {
+        if (er === 'notAuthorized') {
+          this.router.navigateByUrl('/login');
+        }
       });
     } else {
       this.cs.createCourse2(this.course).then(() => {
         this.router.navigateByUrl('');
+      }, (er: string) => {
+        if (er === 'notAuthorized') {
+          this.router.navigateByUrl('/login');
+        }
       });
     }
 
   }
 
   cancel(): void {
-    this.addEditCourseCancel.emit();
+    // this.addEditCourseCancel.emit();
+    this.router.navigateByUrl('');
   }
 
 }

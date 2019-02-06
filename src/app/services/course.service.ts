@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Course } from '../classes/Course';
 import { Courses } from '../components/courselist/mock.courelist';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
   courses: Course[];
-  constructor() {
+  constructor(private as: AuthService) {
     this.courses = Courses;
   }
 
@@ -21,10 +22,15 @@ export class CourseService {
     return of(this.courses);
   }
 
-  createCourse2(newCourse: Course): Promise<null> {
+  createCourse2(newCourse: Course): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.courses.push(newCourse);
-      resolve();
+      if (!this.as.getUser().email) {
+        reject('notAuthorized');
+      } else {
+        this.courses.push(newCourse);
+        resolve();
+      }
+
     });
   }
 
@@ -40,14 +46,18 @@ export class CourseService {
     return of(this.courses);
   }
 
-  updateItem2(updatedCourse: Course): Promise<null> {
+  updateItem2(updatedCourse: Course): Promise<string> {
     return new Promise((resolve, reject) => {
-      const curCourse: Course = this.courses.find((course: Course) => course.id === updatedCourse.id);
-      if (curCourse) {
-        Object.keys(curCourse).forEach((key: string) => curCourse[key] = updatedCourse[key]);
-        resolve();
+      if (!this.as.getUser().email) {
+        reject('notAuthorized');
       } else {
-        reject();
+        const curCourse: Course = this.courses.find((course: Course) => course.id === updatedCourse.id);
+        if (curCourse) {
+          Object.keys(curCourse).forEach((key: string) => curCourse[key] = updatedCourse[key]);
+          resolve();
+        } else {
+          reject();
+        }
       }
     });
   }
