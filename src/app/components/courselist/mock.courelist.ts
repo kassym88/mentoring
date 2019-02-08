@@ -1,7 +1,7 @@
 import {Course} from 'app/classes/Course';
 
 export const Courses: Course[] = [
-  {
+  /*{
     creationDate: new Date('01/09/2018'),
     description: 'First course',
     duration: 50,
@@ -40,5 +40,5 @@ export const Courses: Course[] = [
     id: 5,
     title: 'Course 3',
     topRated: true
-  }
+  }*/
 ];

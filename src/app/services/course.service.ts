@@ -3,18 +3,23 @@ import { Observable, of } from 'rxjs';
 import { Course } from '../classes/Course';
 import { Courses } from '../components/courselist/mock.courelist';
 import {AuthService} from './auth.service';
+import {HttpClient} from '@angular/common/http';
+import {projectConstants} from '../config/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
   courses: Course[];
-  constructor(private as: AuthService) {
+  constructor(private as: AuthService,
+              private http: HttpClient) {
     this.courses = Courses;
   }
 
-  getCourseList(): Observable<Course[]> {
-    return of(this.courses);
+  getCourseList(start: number = 0, count: number = 5): Observable<Course[]> {
+    // return of(this.courses);
+    const url = `${projectConstants.rest}/courses?start=${start}&count=${count}`;
+    return this.http.get<Course[]>(url);
   }
 
   createCourse(newCourse: Course): Observable<Course[]> {

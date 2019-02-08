@@ -21,15 +21,17 @@ export class CourselistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cs.getCourseList().subscribe((courseList: Course[]) => {
-      this.courseListOriginal = courseList;
-      this.courseList = courseList;
+    this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
+      console.log('courseList', courseList);
+      this.courseListOriginal.push(...courseList);
+      this.courseList.push(...courseList);
     });
   }
 
   getCourseList(): void {
-    this.cs.getCourseList().subscribe((courseList: Course[]) => {
-      this.courseList = courseList;
+    this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
+      this.courseListOriginal.push(...courseList);
+      this.courseList.push(...courseList);
     });
   }
 
