@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseitemComponent implements OnInit {
-  @Input() course: Course;
+  @Input() course: { date: Date; description: string; length: number; id: number; name: string; isTopRated: boolean; authors: any[] };
   @Input() courseEdit: Function;
   @Input() courseDelete: Function;
   @Output() courseEditEvent: EventEmitter<Course> = new EventEmitter();

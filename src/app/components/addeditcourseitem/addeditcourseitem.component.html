@@ -15,9 +15,9 @@
         <div class="row mb-3">
           <div class="col-md-2">
             <label>Date</label>
-            <input *ngIf="!course.creationDate" type="text" class="form-control" placeholder="DD/MM/YYYY" [(ngModel)]="course.creationDate">
-            <div *ngIf="course.creationDate" style="background-color: white; color: grey; padding: 3px;">
-              <span>{{course.creationDate | date: 'dd/MM/yyyy'}}</span>
+            <input *ngIf="!course.date" type="text" class="form-control" placeholder="DD/MM/YYYY" [(ngModel)]="course.date">
+            <div *ngIf="course.date" style="background-color: white; color: grey; padding: 3px;">
+              <span>{{course.date | date: 'dd/MM/yyyy'}}</span>
             </div>
           </div>
         </div>

@@ -25,12 +25,13 @@ describe('CourseitemComponent', () => {
     fixture = TestBed.createComponent(CourseitemComponent);
     component = fixture.componentInstance;
     component.course = {
-      creationDate: new Date('01/09/2018'),
+      date: new Date('01/09/2018'),
       description: 'Firts course',
-      duration: 1,
+      length: 1,
       id: 1,
-      title: 'Course 1',
-      topRated: true
+      name: 'Course 1',
+      isTopRated: true,
+      authors: []
     };
     fixture.detectChanges();
   });

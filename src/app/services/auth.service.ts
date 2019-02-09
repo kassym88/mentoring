@@ -15,19 +15,20 @@ export class AuthService {
   }
 
   logIn(email: string, password): void {
-    this.user.email = email;
-    // this.http
-    //   .post(`${projectConstants.rest}/auth/login`, {data: {email: email, password: password}}, httpOptions)
-    //   .subscribe(resp => {
-    //     console.log('resp', resp);
-    //   }, er => {
-    //     console.log('er', er);
-    //   });
-    this.router.navigateByUrl('');
+    // this.user.email = email;
+    this.http
+      .post(`${projectConstants.rest}/auth/login`, {data: {login: email, password: password}})
+      .subscribe((resp: {token: string}) => {
+        this.user.token = resp.token;
+        this.router.navigateByUrl('');
+      }, er => {
+        alert(er.error);
+      });
+
   }
 
   logOut(): void {
-    this.user.email = null;
+    this.user.token = null;
     this.router.navigateByUrl('/login');
   }
 

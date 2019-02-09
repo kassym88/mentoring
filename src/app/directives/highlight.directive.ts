@@ -15,13 +15,17 @@ export class HighlightDirective implements OnInit {
   }
 
   private highLightBorder(dt: Date): void {
-    const curDt: Date = new Date();
-    const brd: string = (dt && (curDt.getTime() -  dt.getTime()) > 0 && (curDt.getTime() - dt.getTime()) / 1000 / 60 / 60 / 24 <= 14  )
-      ? '10px solid green'
-      : (dt && dt > curDt)
-        ? '10px solid blue'
-        : '';
-    this.renderer.setStyle(this.el.nativeElement, 'border-right', brd);
+    try {
+      const curDt: Date = new Date();
+      const brd: string = (dt && (curDt.getTime() -  dt.getTime()) > 0 && (curDt.getTime() - dt.getTime()) / 1000 / 60 / 60 / 24 <= 14  )
+        ? '10px solid green'
+        : (dt && dt > curDt)
+          ? '10px solid blue'
+          : '';
+      this.renderer.setStyle(this.el.nativeElement, 'border-right', brd);
+    } catch (e) {
+
+    }
   }
 
 }

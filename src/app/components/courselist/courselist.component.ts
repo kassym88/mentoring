@@ -22,7 +22,7 @@ export class CourselistComponent implements OnInit {
 
   ngOnInit() {
     this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
-      console.log('courseList', courseList);
+      // console.log('courseList', courseList);
       this.courseListOriginal.push(...courseList);
       this.courseList.push(...courseList);
     });
