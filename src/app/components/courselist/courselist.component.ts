@@ -52,9 +52,15 @@ export class CourselistComponent implements OnInit {
 
   courseDeleteEvent(course: Course): void {
     if (confirm(`Do you really want to delete this course "${course.title}"?`)) {
-      this.cs.removeItem(course).subscribe((courseList: Course[]) => {
-        this.courseList = courseList;
-      });
+      // this.cs.removeItem(course).subscribe((courseList: Course[]) => {
+      //   this.courseList = courseList;
+      // });
+      this.cs.deleteCourse(course)
+        .then((courseList: Course[]) => {
+          this.courseList = courseList;
+        }, er => {
+          alert(er);
+        });
     }
   }
 
