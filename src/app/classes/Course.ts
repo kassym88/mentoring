@@ -3,9 +3,9 @@ import {ICourse} from '../interfaces/ICourse';
 export class Course implements ICourse {
   date: Date;
   description: string;
-  duration: number;
+  duration?: number;
   id: number;
-  title: string;
+  title?: string;
   isTopRated: boolean;
   name: string;
   length: number;

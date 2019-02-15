@@ -24,6 +24,7 @@ import { CourseFilterPipe } from './pipes/course-filter.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { AddeditcourseitemComponent } from './components/addeditcourseitem/addeditcourseitem.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     CourseFilterPipe,
     ModalComponent,
     AddeditcourseitemComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

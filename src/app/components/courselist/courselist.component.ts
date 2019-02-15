@@ -3,6 +3,10 @@ import { Course } from 'app/classes/Course';
 import { CourseService } from 'app/services/course.service';
 import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
 import {Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import {LoaderService} from '../../services/loader.service';
+// import * as Rx from 'rxjs';
 
 @Component({
   selector: 'app-courselist',
@@ -15,10 +19,18 @@ export class CourselistComponent implements OnInit {
   filter: string;
   courseListOriginal: Course[] = [];
   courseList: Course[] = [];
+
+  filterInputSubject = new Subject<string>();
+
   constructor(private cs: CourseService,
               private cf: CourseFilterPipe,
-              private router: Router
-  ) { }
+              private router: Router,
+              private ls: LoaderService
+  ) {
+    this.filterInputSubject
+      .pipe(debounceTime(500))
+      .subscribe((event: string) => this.filterInputChange(event));
+  }
 
   ngOnInit() {
     this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
@@ -26,6 +38,23 @@ export class CourselistComponent implements OnInit {
       this.courseListOriginal.push(...courseList);
       this.courseList.push(...courseList);
     });
+  }
+
+  filterInputChange(searchWord) {
+    if (searchWord && searchWord.length > 2) {
+      this.ls.loaderSubject.next(true);
+      this.cs.searchCourse(searchWord)
+        .subscribe((resp: Course[]) => {
+          this.courseList = resp;
+          this.ls.loaderSubject.next(false);
+        }, er => {
+          console.error(er);
+          this.courseList = this.courseListOriginal;
+          this.ls.loaderSubject.next(false);
+        });
+    } else {
+      this.courseList = this.courseListOriginal;
+    }
   }
 
   getCourseList(): void {

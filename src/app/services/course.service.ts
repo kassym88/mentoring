@@ -5,6 +5,7 @@ import { Courses } from '../components/courselist/mock.courelist';
 import {AuthService} from './auth.service';
 import {HttpClient} from '@angular/common/http';
 import {projectConstants} from '../config/constants';
+import {LoaderService} from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ import {projectConstants} from '../config/constants';
 export class CourseService {
   courses: Course[];
   constructor(private as: AuthService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private ls: LoaderService) {
     this.courses = Courses;
   }
 
@@ -35,7 +37,6 @@ export class CourseService {
         this.courses.push(newCourse);
         resolve();
       }
-
     });
   }
 
@@ -58,12 +59,15 @@ export class CourseService {
       } else {
         const curCourse: Course = this.courses.find((course: Course) => course.id === updatedCourse.id);
         if (curCourse) {
+          this.ls.loaderSubject.next(true);
           const url = `${projectConstants.rest}/course_update`;
           this.http.post(url, {updatedCourse: updatedCourse})
             .subscribe(resp => {
               Object.keys(curCourse).forEach((key: string) => curCourse[key] = updatedCourse[key]);
+              this.ls.loaderSubject.next(false);
               resolve();
             }, er => {
+              this.ls.loaderSubject.next(false);
               reject(er);
             });
         } else {
@@ -85,15 +89,25 @@ export class CourseService {
     return new Promise((resolve, reject) => {
       const x: number = this.courses.findIndex((course: Course) => course.id === removeCourse.id);
       if (x > -1) {
+        this.ls.loaderSubject.next(true);
         const url = `${projectConstants.rest}/course_delete`;
         this.http.post(url, {id: removeCourse.id})
           .subscribe(resp => {
             this.courses.splice(x, 1);
+            this.ls.loaderSubject.next(false);
             resolve(this.courses);
           }, er => {
+            this.ls.loaderSubject.next(false);
             reject(er);
           });
+      } else {
+        reject('Course not found');
       }
     });
+  }
+
+  searchCourse(searchWord: string): Observable<Course[] | string> {
+    const url = `${projectConstants.rest}/course_search`;
+    return this.http.post<Course[] | string>(url, {searchWord: searchWord});
   }
 }

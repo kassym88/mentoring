@@ -24,6 +24,9 @@ export class AppComponent implements OnInit  {
 
   ngOnInit(): void {
     this.user = this.as.getUser();
+    // this.as.userSubject.subscribe((user: User) => {
+    //   this.user = user;
+    // });
     if (!this.user.token) {
       this.router.navigateByUrl('/login');
     }

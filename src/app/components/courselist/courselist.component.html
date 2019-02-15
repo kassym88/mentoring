@@ -2,7 +2,7 @@
 <div class="courselist">
   <div class="courselist-container">
     <div class="courselist-left form-inline">
-      <input class="form-control" [(ngModel)]="filter" placeholder="Type to search"/>
+      <input class="form-control" [(ngModel)]="filter" (ngModelChange)="filterInputSubject.next($event)" placeholder="Type to search"/>
       <button class="btn btn-sm btn-primary" (click)="searchCourseList(filter)">Search</button>
     </div>
     <div class="courselist-right">
