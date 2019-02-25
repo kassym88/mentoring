@@ -12,13 +12,14 @@ import {LoaderService} from './loader.service';
 export class AuthService {
   user: User;
   userSubject: Subject<User> = new Subject<User>();
+
   constructor(private router: Router,
               private http: HttpClient,
               private ls: LoaderService) {
     this.user = new User();
   }
 
-  logIn(email: string, password): void {
+  logIn(email: string, password: string): void {
     // this.user.email = email;
     this.ls.loaderSubject.next(true);
     this.http
@@ -33,6 +34,10 @@ export class AuthService {
         this.ls.loaderSubject.next(false);
       });
 
+  }
+
+  logIn2(email: string, password: string): Observable<{token: string} | any> {
+    return this.http.post(`${projectConstants.rest}/auth/login`, {login: email, password: password});
   }
 
   logOut(): void {

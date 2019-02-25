@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 // Modules
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,13 @@ import { ModalComponent } from './components/modal/modal.component';
 import { AddeditcourseitemComponent } from './components/addeditcourseitem/addeditcourseitem.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { LoaderComponent } from './components/loader/loader.component';
+// NGRX
+// import { reducers, metaReducers } from './reducers';
+import {EffectsModule} from '@ngrx/effects';
+import {authReducer} from './auth/ngrx/reducers/auth.reducer';
+import {AuthEffects} from './auth/ngrx/effects/auth.effects';
+import {courseReducer} from './ngrx/reducers/course.reducer';
+import {CourseEffects} from './ngrx/effects/course.effects';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    AuthModule
+    AuthModule,
+    StoreModule.forRoot({authReducer, courseReducer}),
+    EffectsModule.forRoot([AuthEffects, CourseEffects])
   ],
   providers: [
     CourseFilterPipe,

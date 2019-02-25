@@ -110,4 +110,12 @@ export class CourseService {
     const url = `${projectConstants.rest}/course_search`;
     return this.http.post<Course[] | string>(url, {searchWord: searchWord});
   }
+
+  updateCourse3(updatedCourse: Course): Observable<any> {
+    return this.http.post(`${projectConstants.rest}/course_update`, {updatedCourse});
+  }
+
+  createCourse3(newCourse: Course): Observable<any> {
+    return this.http.post(`${projectConstants.rest}/course_create`, {newCourse});
+  }
 }

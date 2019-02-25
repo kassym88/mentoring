@@ -3,9 +3,12 @@ import { Course } from 'app/classes/Course';
 import { CourseService } from 'app/services/course.service';
 import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
 import {Router} from '@angular/router';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {LoaderService} from '../../services/loader.service';
+import {Store} from '@ngrx/store';
+import {IState} from '../../interfaces/IState';
+import {GetList} from '../../ngrx/actions/course';
 // import * as Rx from 'rxjs';
 
 @Component({
@@ -22,7 +25,10 @@ export class CourselistComponent implements OnInit {
 
   filterInputSubject = new Subject<string>();
 
+  courseObservable: Observable<IState> = this.store.select('courseReducer');
+
   constructor(private cs: CourseService,
+              private store: Store<IState>,
               private cf: CourseFilterPipe,
               private router: Router,
               private ls: LoaderService
@@ -33,11 +39,11 @@ export class CourselistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
-      // console.log('courseList', courseList);
-      this.courseListOriginal.push(...courseList);
-      this.courseList.push(...courseList);
+    this.courseObservable.subscribe((state: IState) => {
+      this.courseList = [...state.courses];
+      this.courseListOriginal = [...state.courses];
     });
+    this.getCourseList();
   }
 
   filterInputChange(searchWord) {
@@ -58,10 +64,11 @@ export class CourselistComponent implements OnInit {
   }
 
   getCourseList(): void {
-    this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
-      this.courseListOriginal.push(...courseList);
-      this.courseList.push(...courseList);
-    });
+    // this.cs.getCourseList(this.courseList.length, 5).subscribe((courseList: Course[]) => {
+    //   this.courseListOriginal.push(...courseList);
+    //   this.courseList.push(...courseList);
+    // });
+    this.store.dispatch(new GetList({start: this.courseList.length, count: 5}));
   }
 
   searchCourseList(filter: string): void {
