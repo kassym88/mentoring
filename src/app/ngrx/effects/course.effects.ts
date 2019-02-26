@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {Effect, Actions, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {tap, map, exhaustMap, catchError} from 'rxjs/operators';
@@ -20,6 +21,7 @@ import {
 @Injectable()
 export class CourseEffects {
   constructor(private actions: Actions,
+              private router: Router,
               private cs: CourseService) {}
 
   @Effect()
@@ -56,6 +58,12 @@ export class CourseEffects {
   );
 
   @Effect({dispatch: false})
+  updateSuccess$ = this.actions.pipe(
+    ofType(CourseActionTypes.UpdateSuccess),
+    tap(() => this.router.navigateByUrl(''))
+  );
+
+  @Effect({dispatch: false})
   updateError$ = this.actions.pipe(
     ofType(CourseActionTypes.UpdateError),
     map((action: UpdateError) => action.payload),
@@ -73,6 +81,12 @@ export class CourseEffects {
           catchError((er: any) => of(new UpdateError(er)))
         )
     )
+  );
+
+  @Effect({dispatch: false})
+  createSuccess$ = this.actions.pipe(
+    ofType(CourseActionTypes.CreateSuccess),
+    tap(() => this.router.navigateByUrl(''))
   );
 
   @Effect({dispatch: false})
