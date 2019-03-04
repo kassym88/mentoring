@@ -22,8 +22,8 @@ export class AddeditcourseitemComponent implements OnInit {
   id: string;
 
   courseForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(500)]),
     date: new FormControl('', [Validators.required]),
     length: new FormControl('', [Validators.required])
   });
@@ -36,24 +36,18 @@ export class AddeditcourseitemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log('this.course', this.course);
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id !== 'new') {
-      // this.course = this.cs.getItemById(+this.id);
-      this.course = new Course();
       this.ls.loaderSubject.next(true);
-      this.cs.getItemById(+this.id).subscribe((course: Course[]) => {
-        this.course = course[0];
-        console.log('course', this.course);
-
-        this.courseForm.setValue({
-          name: course[0].name,
-          description: course[0].description,
-          date: course[0].date,
-          length: course[0].length
+      this.cs.getItemById(+this.id).subscribe((course: Course) => {
+        this.courseForm.patchValue({
+          name: course.name,
+          description: course.description,
+          date: course.date,
+          length: course.length
         });
 
-        this.header = `Edit course "${this.course.name}"`;
+        this.header = `Edit course "${course.name}"`;
         this.ls.loaderSubject.next(false);
       }, er => {
         alert(er);
@@ -61,7 +55,6 @@ export class AddeditcourseitemComponent implements OnInit {
       });
     } else {
       this.header = 'Create new course';
-      this.course = new Course();
     }
   }
 
@@ -92,6 +85,27 @@ export class AddeditcourseitemComponent implements OnInit {
   cancel(): void {
     // this.addEditCourseCancel.emit();
     this.router.navigateByUrl('');
+  }
+
+  save2(): void {
+    console.log('courseForm', this.courseForm.get('name').valid);
+    if (this.courseForm.get('name').valid
+      && this.courseForm.get('description').valid
+      && this.courseForm.get('length').valid
+      && this.courseForm.get('date').valid
+    ) {
+      this.course.name = this.courseForm.get('name').value;
+      this.course.description = this.courseForm.get('description').value;
+      this.course.length = this.courseForm.get('length').value;
+      this.course.date = this.courseForm.get('date').value;
+      if (this.id !== 'new') {
+        this.store.dispatch(new Create(this.course));
+      } else {
+        this.store.dispatch(new Update(this.course));
+      }
+    } else {
+      alert('Some fields are empty');
+    }
   }
 
 }

@@ -56,9 +56,8 @@
         <label>Title</label>
         <input type="text"
                class="form-control"
+               formControlName="name"
                placeholder="Type course name"
-               [(ngModel)]="course.name"
-               name="name"
         >
       </div>
 
@@ -66,17 +65,24 @@
         <label>Description</label>
         <textarea class="form-control"
                   placeholder="Type course description"
-                  [(ngModel)]="course.description"
-                  name="description"
+                  formControlName="description"
         ></textarea>
       </div>
 
       <div class="row mb-3">
         <div class="col-md-2">
           <label>Date</label>
-          <input *ngIf="!course.date" type="text" class="form-control" placeholder="DD/MM/YYYY" [(ngModel)]="course.date">
-          <div *ngIf="course.date" style="background-color: white; color: grey; padding: 3px;">
-            <span>{{course.date | date: 'dd/MM/yyyy'}}</span>
+          <input *ngIf="!courseForm.get('date').value"
+                 type="text"
+                 class="form-control"
+                 placeholder="DD/MM/YYYY"
+                 [value]="courseForm.get('date').value | date: 'dd/MM/yyyy'"
+                 formControlName="date"
+          >
+          <div *ngIf="courseForm.get('date').value"
+               style="background-color: white; color: grey; padding: 3px;"
+          >
+            <span>{{courseForm.get('date').value | date: 'dd/MM/yyyy'}}</span>
           </div>
         </div>
       </div>
@@ -84,12 +90,16 @@
       <div class="row mb-3">
         <div class="col-md-2">
           <label>Duration</label>
-          <input type="text" class="form-control" placeholder="minutes" [(ngModel)]="course.length">
+          <input type="text"
+                 class="form-control"
+                 placeholder="minutes"
+                 formControlName="length"
+          >
         </div>
         <div class="col-md-2">
           <label></label>
           <div style="margin-top: 15px;">
-            <span>{{course.length || 0 | duration}}</span>
+            <span>{{courseForm.get('length').value|| 0 | duration}}</span>
           </div>
         </div>
       </div>
@@ -100,7 +110,7 @@
       </div>
 
       <div class="form-inline">
-        <button class="btn btn-primary" type="submit" style="margin-right: 10px;" (click)="save()">Save</button>
+        <button class="btn btn-primary" type="submit" style="margin-right: 10px;" (click)="save2()">Save</button>
         <button class="btn btn-light" type="submit" (click)="cancel()">Cancel</button>
       </div>
     </div>

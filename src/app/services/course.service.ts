@@ -40,10 +40,10 @@ export class CourseService {
     });
   }
 
-  getItemById(id: number): Observable<Course[]> {
+  getItemById(id: number): Observable<Course> {
     // return this.courses.find((course: Course) => course.id === id);
     const url = `${projectConstants.rest}/course_get_by_id`;
-    return this.http.post<Course[]>(url, {id: id});
+    return this.http.post<Course>(url, {id: id});
   }
 
   updateItem(updatedCourse: Course): Observable<Course[]> {
