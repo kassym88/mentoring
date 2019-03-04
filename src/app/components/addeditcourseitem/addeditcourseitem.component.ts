@@ -5,6 +5,8 @@ import {CourseService} from '../../services/course.service';
 import {IState} from '../../interfaces/IState';
 import {Store} from '@ngrx/store';
 import {Create, Update} from '../../ngrx/actions/course';
+import {LoaderService} from '../../services/loader.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-addeditcourseitem',
@@ -18,18 +20,45 @@ export class AddeditcourseitemComponent implements OnInit {
   @Output() addEditCourseCancel: EventEmitter<null> = new EventEmitter();
   header: string;
   id: string;
+
+  courseForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    date: new FormControl('', [Validators.required]),
+    length: new FormControl('', [Validators.required])
+  });
+
   constructor(private route: ActivatedRoute,
               private store: Store<IState>,
               private router: Router,
-              private cs: CourseService
+              private cs: CourseService,
+              private ls: LoaderService
   ) { }
 
   ngOnInit() {
     // console.log('this.course', this.course);
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id !== 'new') {
-      this.course = this.cs.getItemById(+this.id);
-      this.header = `Edit course "${this.course.title}"`;
+      // this.course = this.cs.getItemById(+this.id);
+      this.course = new Course();
+      this.ls.loaderSubject.next(true);
+      this.cs.getItemById(+this.id).subscribe((course: Course[]) => {
+        this.course = course[0];
+        console.log('course', this.course);
+
+        this.courseForm.setValue({
+          name: course[0].name,
+          description: course[0].description,
+          date: course[0].date,
+          length: course[0].length
+        });
+
+        this.header = `Edit course "${this.course.name}"`;
+        this.ls.loaderSubject.next(false);
+      }, er => {
+        alert(er);
+        this.ls.loaderSubject.next(false);
+      });
     } else {
       this.header = 'Create new course';
       this.course = new Course();

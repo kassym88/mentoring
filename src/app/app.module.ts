@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 // Modules
@@ -56,6 +57,7 @@ import {CourseEffects} from './ngrx/effects/course.effects';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthModule,
     StoreModule.forRoot({authReducer, courseReducer}),
     EffectsModule.forRoot([AuthEffects, CourseEffects])
