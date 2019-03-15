@@ -1,0 +1,39 @@
+{
+  "auth": {
+    "email": "Adresse électronique",
+    "password": "Mot de passe",
+    "loginPlaceholder": "Taper adresse électronique",
+    "passwordPlaceholder": "Taper mot de passe",
+    "signIn": "Se connecter"
+  },
+  "header": {
+    "logout": "Connecter out"
+  },
+  "courseList": {
+    "searchPlaceholder": "Taper pour chercher",
+    "search": "Chercher",
+    "addNewCourse": "Ajouter un cours nouveau",
+    "loadMore": "Charger plus",
+    "noData": "Pas de données, n'hésitez pas à ajouter un nouveau cours"
+  },
+  "courseItem": {
+    "edit": "Modifier",
+    "delete": "Effacer"
+  },
+  "addEditCourseItem": {
+    "newCourse": "Créer un cours nouveau",
+    "editCourse": "Modifier cours \"{{value}}\"",
+    "title": "Title",
+    "titlePlaceholder": "Taper cours prénom",
+    "description": "La description",
+    "descriptionPlaceholder": "Taper cours description",
+    "date": "L'date",
+    "datePlaceholder": "DD/MM/YYYY",
+    "duration": "Durée",
+    "durationPlaceholder": "minutes",
+    "anchors": "Les ancres",
+    "anchorsPlaceholder": "Taper ancre prénom",
+    "save": "Enregistrer",
+    "cancel": "Annuler"
+  }
+}

@@ -48,70 +48,73 @@
   </div>
 </div>-->
 
-<div class="container" style="background-color: #daf7e4; padding: 15px;" [formGroup]="courseForm">
+<div class="container" style="background-color: #daf7e4; padding: 15px;">
   <div class="row">
     <div class="col-md-12">
-      <h4 class="mb-3">{{header}}</h4>
-      <div class="mb-3">
-        <label>Title</label>
-        <input type="text"
-               class="form-control"
-               formControlName="name"
-               placeholder="Type course name"
-        >
-      </div>
-
-      <div class="mb-3">
-        <label>Description</label>
-        <textarea class="form-control"
-                  placeholder="Type course description"
-                  formControlName="description"
-        ></textarea>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-2">
-          <label>Date</label>
-          <input *ngIf="!courseForm.get('date').value"
-                 type="text"
-                 class="form-control"
-                 placeholder="DD/MM/YYYY"
-                 [value]="courseForm.get('date').value | date: 'dd/MM/yyyy'"
-                 formControlName="date"
-          >
-          <div *ngIf="courseForm.get('date').value"
-               style="background-color: white; color: grey; padding: 3px;"
-          >
-            <span>{{courseForm.get('date').value | date: 'dd/MM/yyyy'}}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-2">
-          <label>Duration</label>
+      <h4 class="mb-3" *ngIf="id === 'new'">{{'addEditCourseItem.newCourse' | translate}}</h4>
+      <h4 class="mb-3" *ngIf="id !== 'new'">{{'addEditCourseItem.editCourse' | translate : {value: course.name} }}</h4>
+      <div [formGroup]="courseForm">
+        <div class="mb-3">
+          <label>{{'addEditCourseItem.title' | translate}}</label>
           <input type="text"
                  class="form-control"
-                 placeholder="minutes"
-                 formControlName="length"
+                 formControlName="name"
+                 placeholder="{{'addEditCourseItem.titlePlaceholder' | translate}}"
           >
         </div>
-        <div class="col-md-2">
-          <label></label>
-          <div style="margin-top: 15px;">
-            <span>{{courseForm.get('length').value|| 0 | duration}}</span>
+
+        <div class="mb-3">
+          <label>{{'addEditCourseItem.description' | translate}}</label>
+          <textarea class="form-control"
+                    placeholder="{{'addEditCourseItem.descriptionPlaceholder' | translate}}"
+                    formControlName="description"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <label>{{'addEditCourseItem.date' | translate}}</label>
+            <input *ngIf="!courseForm.get('date').value"
+                   type="text"
+                   class="form-control"
+                   placeholder="{{'addEditCourseItem.datePlaceholder' | translate}}"
+                   [value]="courseForm.get('date').value | date: 'dd/MM/yyyy'"
+                   formControlName="date"
+            >
+            <div *ngIf="courseForm.get('date').value"
+                 style="background-color: white; color: grey; padding: 3px;"
+            >
+              <span>{{courseForm.get('date').value | date: 'dd/MM/yyyy'}}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Anchors</label>
-        <input type="text" class="form-control" placeholder="Type anchor name">
-      </div>
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <label>Duration</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="{{'addEditCourseItem.duration' | translate}}"
+                   formControlName="length"
+            >
+          </div>
+          <div class="col-md-2">
+            <label></label>
+            <div style="margin-top: 15px;">
+              <span>{{courseForm.get('length').value|| 0 | duration}}</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="form-inline">
-        <button class="btn btn-primary" type="submit" style="margin-right: 10px;" (click)="save2()">Save</button>
-        <button class="btn btn-light" type="submit" (click)="cancel()">Cancel</button>
+        <div class="mb-3">
+          <label>{{'addEditCourseItem.anchors' | translate}}</label>
+          <input type="text" class="form-control" placeholder="{{'addEditCourseItem.anchorsPlaceholder' | translate}}">
+        </div>
+
+        <div class="form-inline">
+          <button class="btn btn-primary" type="submit" style="margin-right: 10px;" (click)="save2()">{{'addEditCourseItem.save' | translate}}</button>
+          <button class="btn btn-light" type="submit" (click)="cancel()">{{'addEditCourseItem.cancel' | translate}}</button>
+        </div>
       </div>
     </div>
   </div>

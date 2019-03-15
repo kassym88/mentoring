@@ -1,0 +1,39 @@
+{
+  "auth": {
+    "email": "Email address",
+    "password": "Password",
+    "loginPlaceholder": "Type email address",
+    "passwordPlaceholder": "Type password",
+    "signIn": "Sign in"
+  },
+  "header": {
+    "logout": "Log out"
+  },
+  "courseList": {
+    "searchPlaceholder": "Type to search",
+    "search": "Search",
+    "addNewCourse": "Add new course",
+    "loadMore": "Load more",
+    "noData": "No Data, feel free to add new course"
+  },
+  "courseItem": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "addEditCourseItem": {
+    "newCourse": "Create new course",
+    "editCourse": "Edit course \"{{value}}\"",
+    "title": "Title",
+    "titlePlaceholder": "Type course name",
+    "description": "Description",
+    "descriptionPlaceholder": "Type course description",
+    "date": "Date",
+    "datePlaceholder": "DD/MM/YYYY",
+    "duration": "Duration",
+    "durationPlaceholder": "minutes",
+    "anchors": "Anchors",
+    "anchorsPlaceholder": "Type anchor name",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}

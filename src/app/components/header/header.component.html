@@ -2,10 +2,15 @@
   <div class="header-left">
     <app-logo></app-logo>
   </div>
-  <div class="header-right" *ngIf="user && user.token">
-    <div>
+  <div class="header-middle">
+    <select class="form-control form-control-sm language-selector" #langSelected (change)="translate.use(langSelected.value)">
+      <option *ngFor="let lang of translate.getLangs()" (value)="lang" (selected)="lang === translate.currentLang">{{lang}}</option>
+    </select>
+  </div>
+  <div class="header-right">
+    <div *ngIf="user && user.token">
       <span class="header-user">{{user.email}}</span>
-      <button class="header-logout btn-group" (click)="logout()">Log Out</button>
+      <button class="header-logout btn-group" (click)="logout()">{{'header.logout' | translate}}</button>
     </div>
   </div>
 </div>

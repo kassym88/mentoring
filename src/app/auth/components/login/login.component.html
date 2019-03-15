@@ -1,6 +1,6 @@
 <!--<form>
   <p>
-    <label class="mb-0">Email address</label>
+    <label class="mb-0">{{ 'auth.email' | translate}}</label>
     <input type="email"
            class="form-control"
            [(ngModel)]="login"
@@ -9,7 +9,7 @@
     />
   </p>
   <p>
-    <label class="mb-0">Password</label>
+    <label class="mb-0">{{ 'auth.password' | translate}}</label>
     <input type="password"
            class="form-control"
            [(ngModel)]="password"
@@ -24,22 +24,23 @@
 
 <form [formGroup]="user">
   <p>
-    <label class="mb-0">Email address</label>
+    <label class="mb-0">{{ 'auth.email' | translate}}</label>
     <input type="email"
            class="form-control"
            formControlName="login"
-           placeholder="{{loginPlaceholder}}"
+           placeholder="{{'auth.loginPlaceholder' | translate}}"
     />
   </p>
   <p>
-    <label class="mb-0">Password</label>
+    <label class="mb-0">{{ 'auth.password' | translate}}</label>
     <input type="password"
            class="form-control"
            formControlName="password"
-           placeholder="{{passwordPlaceholder}}"
+           placeholder="{{'auth.passwordPlaceholder' | translate}}"
     />
   </p>
   <button class="btn btn-lg btn-info btn-block"
           (click)="signIn2()"
-  >Sign in</button>
+          [translate]="'auth.signIn' | translate"
+  ></button>
 </form>

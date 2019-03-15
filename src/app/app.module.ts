@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 // Modules
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +37,10 @@ import {AuthEffects} from './auth/ngrx/effects/auth.effects';
 import {courseReducer} from './ngrx/reducers/course.reducer';
 import {CourseEffects} from './ngrx/effects/course.effects';
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +66,14 @@ import {CourseEffects} from './ngrx/effects/course.effects';
     ReactiveFormsModule,
     AuthModule,
     StoreModule.forRoot({authReducer, courseReducer}),
-    EffectsModule.forRoot([AuthEffects, CourseEffects])
+    EffectsModule.forRoot([AuthEffects, CourseEffects]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     CourseFilterPipe,

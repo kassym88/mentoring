@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Course} from '../../classes/Course';
-import {ActivatedRoute, Router} from '@angular/router';
-import {CourseService} from '../../services/course.service';
-import {IState} from '../../interfaces/IState';
-import {Store} from '@ngrx/store';
-import {Create, Update} from '../../ngrx/actions/course';
-import {LoaderService} from '../../services/loader.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {Course} from 'app/classes/Course';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CourseService} from 'app/services/course.service';
+import {IState} from 'app/interfaces/IState';
+import {Store} from '@ngrx/store';
+import {Create, Update} from 'app/ngrx/actions/course';
+import {LoaderService} from 'app/services/loader.service';
 
 @Component({
   selector: 'app-addeditcourseitem',
@@ -32,7 +33,8 @@ export class AddeditcourseitemComponent implements OnInit {
               private store: Store<IState>,
               private router: Router,
               private cs: CourseService,
-              private ls: LoaderService
+              private ls: LoaderService,
+              public translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -40,21 +42,18 @@ export class AddeditcourseitemComponent implements OnInit {
     if (this.id !== 'new') {
       this.ls.loaderSubject.next(true);
       this.cs.getItemById(+this.id).subscribe((course: Course) => {
+        this.course = course;
         this.courseForm.patchValue({
           name: course.name,
           description: course.description,
           date: course.date,
           length: course.length
         });
-
-        this.header = `Edit course "${course.name}"`;
         this.ls.loaderSubject.next(false);
       }, er => {
         alert(er);
         this.ls.loaderSubject.next(false);
       });
-    } else {
-      this.header = 'Create new course';
     }
   }
 

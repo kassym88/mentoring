@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,16 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   @Output() signInEvent: EventEmitter<{email: string, password: string}> = new EventEmitter();
   login = '';
-  loginPlaceholder = 'Type email address';
   password = '';
-  passwordPlaceholder = 'Type password';
 
   user = new FormGroup({
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
 
-  constructor() { }
+  constructor(public translate: TranslateService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   signIn(login: string, password: string): void {
     this.signInEvent.emit({email: login, password: password});
