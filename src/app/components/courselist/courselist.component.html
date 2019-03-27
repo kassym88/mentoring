@@ -14,7 +14,7 @@
                   [courseEdit]="courseEdit"
                   [courseDelete]="courseDelete"
                   (courseEditEvent)="courseEditEvent(course)"
-                  (courseDeleteEvent)="courseDeleteEvent(course)"
+                  (courseDeleteEvent)="courseDeleteEvent($event)"
   ></app-courseitem>
   <button class="load-more btn btn-sm btn-info" (click)="getCourseList()">
     <span *ngIf="courseList.length">{{'courseList.loadMore' | translate}}</span>
