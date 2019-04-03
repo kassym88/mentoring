@@ -52,7 +52,7 @@
   <div class="row">
     <div class="col-md-12">
       <h4 class="mb-3" *ngIf="id === 'new'">{{'addEditCourseItem.newCourse' | translate}}</h4>
-      <h4 class="mb-3" *ngIf="id !== 'new'">{{'addEditCourseItem.editCourse' | translate : {value: course.name} }}</h4>
+      <!--<h4 class="mb-3" *ngIf="id !== 'new'">{{'addEditCourseItem.editCourse' | translate : {value: course.name} }}</h4>-->
       <div [formGroup]="courseForm">
         <div class="mb-3">
           <label>{{'addEditCourseItem.title' | translate}}</label>

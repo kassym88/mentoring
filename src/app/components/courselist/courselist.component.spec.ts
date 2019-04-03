@@ -6,6 +6,14 @@ import { CourseitemComponent } from 'app/components/courseitem/courseitem.compon
 import { HighlightDirective } from 'app/directives/highlight.directive';
 import { DurationPipe } from 'app/pipes/duration.pipe';
 import { CourseFilterPipe } from 'app/pipes/course-filter.pipe';
+import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpLoaderFactory} from '../../app.module';
+import {RouterTestingModule} from '@angular/router/testing';
+import {StoreModule} from '@ngrx/store';
+import {authReducer} from '../../auth/ngrx/reducers/auth.reducer';
+import {courseReducer} from '../../ngrx/reducers/course.reducer';
 
 describe('CourselistComponent', () => {
   let component: CourselistComponent;
@@ -14,14 +22,25 @@ describe('CourselistComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule
+        RouterTestingModule,
+        FormsModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        }),
+        StoreModule.forRoot({authReducer, courseReducer})
       ],
       declarations: [
         CourselistComponent,
         CourseitemComponent,
         HighlightDirective,
         DurationPipe,
-        CourseFilterPipe
+        CourseFilterPipe,
+        BreadcrumbsComponent
       ],
       providers: [
         CourseFilterPipe

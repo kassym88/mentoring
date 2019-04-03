@@ -4,6 +4,10 @@ import { CourseitemComponent } from './courseitem.component';
 import { HighlightDirective } from 'app/directives/highlight.directive';
 import { DurationPipe } from 'app/pipes/duration.pipe';
 import {CourseFilterPipe} from '../../pipes/course-filter.pipe';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpLoaderFactory} from '../../app.module';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('CourseitemComponent', () => {
   let component: CourseitemComponent;
@@ -11,6 +15,17 @@ describe('CourseitemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
+      ],
       declarations: [
         CourseitemComponent,
         HighlightDirective,
